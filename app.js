@@ -12,7 +12,8 @@ const startApp = () => {
             'Add Employee',
             'Remove Employee',
             'Update Employee',
-            'View All Roles'
+            'View All Roles',
+            'Exit'
         ],
         name: 'action'
     }).then((response) => {
