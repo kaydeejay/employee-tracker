@@ -32,19 +32,18 @@ exports.readDB = (str) => {
   });
 }
 
-exports.listDepts = async () => {
-  const depts = await new Promise((resolve) => {
-    connection.query('SELECT * FROM departments', async (err,data) => {
-      if (err) throw err;
-      const response = await new Promise((res) => {
-        res(data);
-      });
-      const arr = [];
-      for (x in response) {
-        arr.push(response[x].department);
-      }
-      resolve(arr);
-    });
-  });
-  return depts;
-}
+// ======== function graveyard ========
+
+// exports.listDepts = async () => {
+//   const deptsArray = await new Promise((res) => {
+//     connection.query('SELECT * FROM departments;', async (err,data) => {
+//       if (err) throw err;
+//       await new Promise((res) => {
+//         res(data);
+//       }).then((response) => {
+//         res(response);
+//       });
+//     });
+//   });
+//   console.log(deptsArray);
+// }
