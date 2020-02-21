@@ -20,3 +20,14 @@ connection.connect(async (err) => {
   console.log(response);
   mainMenu.mainMenu();
 });
+
+exports.readDB = (str) => {
+  connection.query(str, async (err,data) => {
+    if (err) throw err;
+    const response = await new Promise((res) => {
+      res(data);
+    });
+    console.log(response);
+    mainMenu.mainMenu();
+  });
+} 
