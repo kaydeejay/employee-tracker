@@ -20,3 +20,17 @@ VALUES
     ('Kevin', 'Devine-Jones', 'Lead Engineer', 'Engineering', 160000, NULL),
     ('Kristin', 'Devine-Jones', 'Legal Team Lead', 'Legal', 165000, NULL),
     ('Taylor', 'Brauer', 'Accountant', 'Finance', 80000, 'Kristin Devine-Jones');
+
+CREATE TABLE departments (
+    id INT NOT NULL AUTO_INCREMENT,
+    department VARCHAR(50),
+    PRIMARY KEY (id)
+);
+
+INSERT INTO departments
+    (department)
+VALUES
+    ('Sales'),
+    ('Engineering'),
+    ('Finance'),
+    ('Legal');
