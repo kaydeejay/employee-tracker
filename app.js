@@ -1,51 +1,22 @@
-const inquirer = require("inquirer");
-const dbController = require('./db/db.controller');
+const mysql = require('mysql');
+const mainMenu = require('./lib/main-menu');
 
-const startApp = () => {
-  inquirer
-  .prompt({
-    type: 'list',
-    message: 'What would you like to do?',
-    choices: [
-      'View All Employees',
-      'View All Employees by Department',
-      'View All Employees by Manager',
-      'Add Employee',
-      'Remove Employee',
-      'Update Employee',
-      'View All Roles',
-      'Exit'
-    ],
-    name: 'action'
-  }).then((response) => {
-    switch (response.action){
-      case 'View All Employees':
-        dbController.viewAllEmployees();
-        startApp();
-        break;
-      case 'View All Employees by Department':
-        dbController.viewAllByDept();
-        break;
-      case 'View All Employees by Manager':
-        dbController.viewAllByMang();
-        break;
-      case 'Add Employee':
-        dbController.addEmployee();
-        break;
-      case 'Remove Employee':
-        dbController.removeEmployee();
-        break;
-      case 'Update Employee':
-        dbController.updateEmployee();
-        break;
-      case 'View All Roles':
-        dbController.viewAllRoles();
-        break;
-      default:
-        dbController.exitApp();
-        break;
-    }
+const connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "rootroot",
+  database: "employees_db"
+});
+
+connection.connect(async (err) => {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  const response = await new Promise((res) => {
+    res("connected to database as id " + connection.threadId);
   });
-};
-
-startApp();
+  console.log(response);
+  mainMenu.mainMenu();
+});
