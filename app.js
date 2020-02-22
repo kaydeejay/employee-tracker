@@ -27,23 +27,31 @@ exports.readDB = (str) => {
     const response = await new Promise((res) => {
       res(data);
     });
-    console.log(response);
+    console.table(response);
     mainMenu.mainMenu();
   });
 }
 
+
+exports.endConnection = () => {
+  connection.end();
+}
+
 // ======== function graveyard ========
 
-// exports.listDepts = async () => {
-//   const deptsArray = await new Promise((res) => {
-//     connection.query('SELECT * FROM departments;', async (err,data) => {
+// exports.viewAllDepts = () => {
+//   return new Promise ((res) => {
+//     let query = 'SELECT * FROM departments;';
+//     connection.query(query, (err,data) => {
 //       if (err) throw err;
-//       await new Promise((res) => {
-//         res(data);
-//       }).then((response) => {
-//         res(response);
-//       });
+//       res(data);
 //     });
+//   }).then((result) => {
+//     let departments = [];
+//     for (x in result) {
+//       departments.push(result[x].department);
+//     }
+//     console.table(departments);
+//     mainMenu.mainMenu();
 //   });
-//   console.log(deptsArray);
 // }

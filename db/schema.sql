@@ -23,7 +23,7 @@ VALUES
 
 CREATE TABLE departments (
     id INT NOT NULL AUTO_INCREMENT,
-    department VARCHAR(50),
+    department VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -34,3 +34,19 @@ VALUES
     ('Engineering'),
     ('Finance'),
     ('Legal');
+
+CREATE TABLE roles (
+    id INT NOT NULL AUTO_INCREMENT,
+    role VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+INSERT INTO roles
+    (role)
+VALUES  
+    ('Lead Engineer'),
+    ('Engineer'),
+    ('Legal Team Lead'),
+    ('Lawyer'),
+    ('Accounting Head'),
+    ('Accountant');
