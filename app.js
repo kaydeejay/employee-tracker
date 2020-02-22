@@ -55,6 +55,18 @@ exports.listXByY = (str1,str2) => {
   });
 }
 
+exports.getAttrbts = (num) => {
+  return new Promise((res) => {
+    connection.query(
+      `SELECT * FROM employees WHERE id = ${num};`,
+      (err,data) => {
+        if (err) throw err;
+        res(data[0]);
+      }
+    );
+  });
+}
+
 // ======== CREATE functions ========
 
 exports.createNewEmployee = (obj) => {
@@ -85,7 +97,30 @@ exports.addNew = (str1, str2) => {
 
 // ======== UPDATE functions ========
 
+exports.updateEmp = (obj) => {
+  return new Promise((res) => {
+    connection.query(
+      `UPDATE employees SET ${obj.updateAttr} = "${obj.updatedVal}" WHERE id = ${obj.id}`,
+      (err) => {
+        if (err) throw err;
+        console.log('Successfully Updated');
+        mainMenu.mainMenu();
+      });
+  });
+}
 
+// ======== DELETE functions ========
+
+exports.deleteEmployee = (id) => {
+  connection.query(
+    `DELETE FROM employees WHERE id = ${id}`,
+    (err) => {
+      if (err) throw err;
+      console.log('Successfully Deleted');
+      mainMenu.mainMenu();
+    }
+  );
+}
 
 // ======== END function ========
 
